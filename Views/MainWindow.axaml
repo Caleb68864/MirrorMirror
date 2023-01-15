@@ -29,27 +29,35 @@
 
 	<StackPanel Background="Black">
 		<Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto"  Margin="4">
-			<TextBlock Grid.Row="0" Text="{Binding Greeting}"/>
+			<TextBlock Grid.Row="0" FontSize="30" Text="{Binding Greeting, Mode=TwoWay}"/>
 		</Grid>
-		<TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Weather^.NameLine}"/>
-		<Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="*, *, *, *" RowDefinitions="Auto, Auto, Auto"  Margin="4">
-			<TextBlock Grid.Column="0" Grid.Row="0" Text="Temp"/>
-			<TextBlock Grid.Column="1" Grid.Row="0" Text="Feels Like"/>
-			<TextBlock Grid.Column="2" Grid.Row="0" Text="High"/>
-			<TextBlock Grid.Column="3" Grid.Row="0" Text="Low"/>
-			<TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Weather^.Main.TempDegree}"/>
-			<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Weather^.Main.FeelsLikeDegree}"/>
-			<TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Weather^.Main.HighDegree}"/>
-			<TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Weather^.Main.LowDegree}"/>
-		</Grid>
-		<Grid Grid.Row="2" ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto"  Margin="4">
-			<TextBlock Grid.Column="0" Grid.Row="0" Text="Humidity"/>
-			<TextBlock Grid.Column="1" Grid.Row="0" Text="Wind Speed"/>
-			<TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Weather^.Main.HumidityPecent}"/>
-			<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Weather^.Wind.WindSpeed}"/>
-		</Grid>
+		<Border 
+        BorderBrush="White"
+        BorderThickness="2"
+        CornerRadius="3"
+        Padding="4">
+			<StackPanel Background="Black">
+				<TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Weather.NameLine}"/>
+				<Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="*, *, *, *" RowDefinitions="Auto, Auto, Auto"  Margin="4">
+					<TextBlock Grid.Column="0" Grid.Row="0" Text="Temp"/>
+					<TextBlock Grid.Column="1" Grid.Row="0" Text="Feels Like"/>
+					<TextBlock Grid.Column="2" Grid.Row="0" Text="High"/>
+					<TextBlock Grid.Column="3" Grid.Row="0" Text="Low"/>
+					<TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Weather^.Main.TempDegree}"/>
+					<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Weather^.Main.FeelsLikeDegree}"/>
+					<TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Weather^.Main.HighDegree}"/>
+					<TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Weather^.Main.LowDegree}"/>
+				</Grid>
+				<Grid Grid.Row="2" ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto"  Margin="4">
+					<TextBlock Grid.Column="0" Grid.Row="0" Text="Humidity"/>
+					<TextBlock Grid.Column="1" Grid.Row="0" Text="Wind Speed"/>
+					<TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Weather^.Main.HumidityPercent}"/>
+					<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Weather^.Wind.WindSpeed}"/>
+				</Grid>
+			</StackPanel>
+		</Border>
 		<Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto"  Margin="4">
-			<Label Grid.Row="0">
+			<Label FontSize="35" Grid.Row="0">
 				Today's Agenda
 			</Label>
 			<Label Grid.Row="1">
@@ -57,7 +65,7 @@
 			</Label>
 		</Grid>
 		<Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto"  Margin="4">
-			<Label Grid.Row="0">
+			<Label FontSize="35" Grid.Row="0">
 				Today's News
 			</Label>
 			<Label Grid.Row="1">
