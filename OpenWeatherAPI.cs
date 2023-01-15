@@ -6,20 +6,33 @@ using Newtonsoft.Json;
 class WeatherData
 {
     public string Name { get; set; }
-    public Main Main = new Main();
-    public Wind Wind = new Wind();
+    public WeatherData()
+    {
+        Name = "";
+    }
+
+    public Main? Main { get; set; }
+    public Wind? Wind { get; set; }
 }
 
 class Main
 {
-    public double Temp { get; set; }
-    public double Feels_Like { get; set; }
-    public double Humidity { get; set; }
+    public double? Temp { get; set; }
+
+    public string TempDegree
+    {
+        get
+        {
+            return Temp + " °F";
+        }
+    }
+    public double? Feels_Like { get; set; }
+    public double? Humidity { get; set; }
 }
 
 class Wind
 {
-    public double Speed { get; set; }
+    public double? Speed { get; set; }
 }
 
 class OpenWeatherAPI
@@ -48,8 +61,7 @@ class OpenWeatherAPI
                 // Console.WriteLine(json);
                 WeatherData wd = new WeatherData();
                 wd = JsonConvert.DeserializeObject<WeatherData>(json);
-                wd.Main = JsonConvert.DeserializeObject<Main>(json);
-                wd.Wind = JsonConvert.DeserializeObject<Wind>(json);
+                wd.Name = "Today's Forecast for " + wd.Name;
                 Console.WriteLine(wd);
                 Console.WriteLine(wd.Name);
                 Console.WriteLine(wd.Main.Temp);
