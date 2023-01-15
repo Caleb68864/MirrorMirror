@@ -6,9 +6,20 @@ using Newtonsoft.Json;
 class WeatherData
 {
     public string Name { get; set; }
-    public double Temperature { get; set; }
+    public Main Main = new Main();
+    public Wind Wind = new Wind();
+}
+
+class Main
+{
+    public double Temp { get; set; }
+    public double Feels_Like { get; set; }
     public double Humidity { get; set; }
-    public double WindSpeed { get; set; }
+}
+
+class Wind
+{
+    public double Speed { get; set; }
 }
 
 class OpenWeatherAPI
@@ -20,9 +31,9 @@ class OpenWeatherAPI
     {
         using (HttpClient client = new HttpClient())
         {
-            string url = $"{API_URL}?q={city}&appid={API_KEY}&units=metric";
+            string url = $"{API_URL}?q={city}&appid={API_KEY}&units=imperial";
             // string url = "https://random-data-api.com/api/v2/users?size=2&is_xml=true";
-            // Console.WriteLine(url);
+            Console.WriteLine(url);
             // string json = await client.GetStringAsync(url);
             // Console.WriteLine(json);
             // return JsonConvert.DeserializeObject<WeatherData>(json);
@@ -34,7 +45,16 @@ class OpenWeatherAPI
                     return null;
                 }
                 var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<WeatherData>(json);
+                // Console.WriteLine(json);
+                WeatherData wd = new WeatherData();
+                wd = JsonConvert.DeserializeObject<WeatherData>(json);
+                wd.Main = JsonConvert.DeserializeObject<Main>(json);
+                wd.Wind = JsonConvert.DeserializeObject<Wind>(json);
+                Console.WriteLine(wd);
+                Console.WriteLine(wd.Name);
+                Console.WriteLine(wd.Main.Temp);
+                Console.WriteLine(wd.Wind.Speed);
+                return wd;
             }
         }
     }
