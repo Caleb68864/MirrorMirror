@@ -12,6 +12,19 @@ class MainWindowViewModel : ViewModelBase
     // public string Greeting => GetGreeting();
     private readonly Timer _timer1;
     private readonly Timer _timer15;
+    public string? _date;
+    public string? Date
+    {
+        get
+        {
+            return _date;
+        }
+        set
+        {
+            _date = value;
+            OnPropertyChanged(nameof(Date));
+        }
+    }
     public string? _greeting;
     public string? Greeting
     {
@@ -43,6 +56,7 @@ class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
+        Date = GetDate();
         Greeting = GetGreeting();
         Weather = OpenWeatherAPI.GetWeatherData("68944");
         _timer1 = new Timer(Minute_1_Tick, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
@@ -57,9 +71,15 @@ class MainWindowViewModel : ViewModelBase
 
     private void Minute_15_Tick(object state)
     {
+        Date = GetDate();
         Weather = OpenWeatherAPI.GetWeatherData("68944");
     }
 
+
+    public string GetDate()
+    {
+        return DateTime.Now.ToString("MMMM dd'th', yyyy");
+    }
     public string GetGreeting()
     {
         int hour = DateTime.Now.Hour;
