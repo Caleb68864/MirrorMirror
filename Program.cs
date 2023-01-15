@@ -16,18 +16,6 @@ class Program
     [STAThread]
     public static void Main(string[] args) => BuildAvaloniaApp()
         .StartWithClassicDesktopLifetime(args);
-    // Timer timer = new Timer(RefreshContext, null, TimeSpan.Zero, TimeSpan.FromSeconds(.1));
-
-    // private static void RefreshContext(object? state)
-    // {
-    //     Console.WriteLine("Refresh");
-    //     Dispatcher.UIThread.InvokeAsync(() =>
-    //     {
-    //         // refresh context here
-    //         MainWindowViewModel vm = new MainWindowViewModel();
-    //         vm.GetGreeting();
-    //     });
-    // }
 
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
